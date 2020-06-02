@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.0/milligram.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="content">
+    <h1>Currency Converter</h1>
+    <h4>The only currency converter you will ever need*</h4>
+    <form action="javascript:;" onsubmit="convert(this)">
+      <fieldset>
+        <label for="valueField">Amount</label>
+        <input type="text" placeholder="200" id="valueField">
+        <label for="fromCurrency">From Currency</label>
+        <select id="fromCurrency">
+          <option value="INR">INR</option>
+        </select>
+        <label for="toCurrency">To Currency</label>
+        <select id="toCurrency">
+          <option value="INR">INR</option>
+        </select>
+        <input id="convert-button" class="button-primary" type="submit" value="Convert">
+      </fieldset>
+      <div id="loading-container" style="display: none;">
+        <div class="loader"> </div>
+        <div>&nbsp;&nbsp;Calculating ...</div>
+      </div>
+      <div id="result"></div>
+    </form>
+  </div>
+
+
+  <p>* If you have only one currency</p>
+</body>
+
+<script>
+  function convert(form) {
+    const amount = form[1].value || 0;
+    document.getElementById("convert-button").setAttribute("disabled", "true");
+    document.getElementById("valueField").setAttribute("disabled", "true");
+    document.getElementById("loading-container").style.display = "flex";
+    setTimeout(() => {
+      document.getElementById("convert-button").removeAttribute("disabled");
+      document.getElementById("valueField").removeAttribute("disabled");
+      document.getElementById("loading-container").style.display = "none";
+      document.getElementById("result").innerText = `${amount}₹ in INR is ... ${amount}₹`;
+    }, 1000);
+  }
+</script>
+
+
+</html>
